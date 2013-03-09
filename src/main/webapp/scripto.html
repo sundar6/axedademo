@@ -1,0 +1,80 @@
+<html>
+<Title>Axeda Integration Test Harness</Title>
+<head>
+<link rel="stylesheet" type="text/css"  href="styles.css">
+</head>
+<body class="blog">
+<div id="header"><fieldset><legend><label>Axeda Integration Test Harness</label></legend></fieldset></div>
+<div id="content">
+    <h1>Acknowedge Started Alarms</h1>
+
+    <pre class="markup">
+        import com.axeda.drm.sdk.data.AlarmFinder
+        import com.axeda.drm.sdk.device.Device
+        import com.axeda.drm.sdk.device.DeviceFinder
+        import com.axeda.drm.sdk.Context
+        import com.axeda.common.sdk.id.Identifier
+        import com.axeda.drm.sdk.data.Alarm
+        import com.axeda.drm.sdk.data.AlarmState
+        /**
+         * Scripto, acknowledge all alarms in the started State
+         */
+        String deviceId = parameters.deviceid;
+        Context sdkContext = Context.getSDKContext();
+
+        DeviceFinder df = new DeviceFinder(sdkContext);
+        df.setId(new Identifier(Long.parseLong(deviceId)));
+
+        Device device = df.find();
+
+
+        AlarmFinder  af = new AlarmFinder(sdkContext);
+        af.setState(AlarmState.STARTED)
+        af.setDevice(device);
+        List<Alarm> alarms =  af.findAll();
+
+        for (a in alarms){
+            a.acknowledge();
+        }
+
+        return ['Content-Type': 'text/xml;charset=ISO-8859-1', 'Content': '&lt;ok/>']
+
+            </pre>
+</div>
+
+
+<div id="nav">
+<h1>Menu</h1>
+<ul>
+ <li><a href="index.html">Home</a></li>
+ <li><a href="http://training.axeda.com">Training Server</a></li>
+ <li><a href="scripts.html">Scripts</a></li>
+ <li class="current"><strong>Scripto</a></strong>
+
+    <ul>
+        <li class="current"><strong>Acknowedge Started Alarms</strong></li>
+</ul>
+    <li><a href="sim.html">Simulator</a></li>
+
+
+</ul>
+
+
+</div>
+
+
+
+
+<div id="sidebar">
+
+    </div>
+
+<div id="footer">
+    <p/>
+    <p/>
+
+    <p/>
+
+</div>
+</body>
+</html>

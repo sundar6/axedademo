@@ -1,0 +1,113 @@
+<html>
+<Title>Axeda Integration Test Harness</Title>
+<head>
+<link rel="stylesheet" type="text/css"  href="styles.css">
+</head>
+<body class="blog">
+<div id="header"><fieldset><legend><label>Axeda Integration Test Harness</label></legend></fieldset></div>
+<div id="content">
+    <h1>Asset Demo</h1>
+    <p>RESTFul Weservice call to retrieve asset details</p>
+    <a href="rest/assetdetail/IntegrationTrainingModel/train1">http://axedaintegrationdemo.elasticbeanstalk.com/rest/assetdetail/{model}/{serial}</a>
+    <p/>
+    <p>Asset Updates can Sent via a Web Services call from the Axeda Platform</p>
+    <pre class="markup"><h3>Expected Asset format</h3>
+        &lt;asset>
+            &lt;deviceid>901&lt;/deviceid>
+            &lt;modelnumber>IntegrationTrainingModel&lt;/modelnumber>
+            &lt;serialnumber>train1&lt;/serialnumber>
+            &lt;registrationdate>200&lt;/registrationdate>
+        &lt;/asset></pre>
+    <pre class="markup">
+            <h3>Messages Should be Sent via HTTP POST to</h3>
+            http://axedaintegrationdemo.elasticbeanstalk.com/rest/asset/new
+            </pre>
+    <a href="rest/asset/list">http://axedaintegrationdemo.elasticbeanstalk.com/rest/asset/list</a>
+
+    <h1>Alarms</h1>
+    <p>Alarms are posted via the Web Service call from Axeda Platform</p>
+    <pre class="markup"><h3>Expected Alarm format.</h3>
+            &lt;alarm>
+                &lt;description>desc&lt;/description>
+                &lt;deviceid>901&lt;/deviceid>
+                &lt;modelnumber>IntegrationTrainingModel&lt;/modelnumber>
+                &lt;name>sendit&lt;/name>
+                &lt;serialnumber>train1&lt;/serialnumber>
+                &lt;severity>200&lt;/severity>
+            &lt;/alarm></pre>
+        <pre class="markup">
+        <h3>Messages Should be Sent via HTTP POST to</h3>
+        http://axedaintegrationdemo.elasticbeanstalk.com/rest/alarm/new
+        </pre>
+    <p/>
+    <a href="rest/alarm/list">http://axedaintegrationdemo.elasticbeanstalk.com/rest/alarm/list</a>
+    <p>Acknowledge all alarms for a device at the Axeda Platform using the platform deviceid. Scripto invoked from the Integration test harness</p>
+    <a href="rest/alarm/ackdevice/901">http://axedaintegrationdemo.elasticbeanstalk.com/rest/ackdevice/{deviceid}</a>
+
+    <h1>DataItems</h1>
+    <p>DataItems are consumed from ActiveMQ.</p>
+
+    <pre class="markup"><h3>Expected DataItem format.</h3>
+        &lt;DataItem>
+            &lt;name>foo&lt;/name>
+            &lt;value>var&lt;/value>
+            &lt;serialnumber>train1&lt;/serialnumber>
+        &lt;/DataItem></pre>
+    <pre class="markup"><h3>Messages Should be Sent with the following Message Selector</h3>
+        topic='dataitem'</pre>
+
+    <a href="rest/dataitem/list">http://axedaintegrationdemo.elasticbeanstalk.com/rest/dataitem/list</a>
+      <p></p>
+
+
+
+
+   <!--
+    <blockquote>
+
+
+     <blockquote>
+
+    <ul xmlns="http://www.w3.org/1999/xhtml">
+     <li>Inline code samples use <a href="http://www.w3.org/TR/html4/struct/text.html#edef-CODE">the <code>&lt;code&gt;</code> element</a>.
+     </li><li>Block-level samples of text where whitespace is signficant use <a href="http://www.w3.org/TR/html4/struct/text.html#edef-PRE">the <code>&lt;pre&gt;</code> element</a>.
+     </li><li>So a block of code with significant whitespace uses <code>&lt;pre&gt;&lt;code&gt;</code>.
+
+    </li></ul>
+     </blockquote>     -->
+</div>
+
+
+<div id="nav">
+<h1>Menu</h1>
+<ul>
+ <li class="current"><strong>Home</strong></li>
+ <li><a href="http://training.axeda.com">Training Server</a></li>
+ <li><a href="scripts.html">Scripts</a></li>
+ <li><a href="scripto.html">Scripto</a></li>
+    <li><a href="sim.html">Simulator</a></li>
+
+</ul>
+
+
+</ul>
+
+
+</div>
+
+
+
+
+<div id="sidebar">
+
+    </div>
+
+<div id="footer">
+    <p/>
+    <p/>
+
+    <p/>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<html>
+<Title>Axeda Integration Test Harness</Title>
+<head>
+<link rel="stylesheet" type="text/css"  href="styles.css">
+</head>
+<body class="blog">
+<div id="header"><fieldset><legend><label>Axeda Integration Test Harness</label></legend></fieldset></div>
+<div id="content">
+    <h1>Retrieve Asset Details via Webservice</h1>
+
+    <pre class="markup">
+        import groovyx.net.http.RESTClient
+        import com.axeda.drm.sdk.device.Device
+        import com.axeda.drm.sdk.device.DevicePropertyFinder
+        import com.axeda.drm.sdk.Context
+        import com.axeda.drm.sdk.device.PropertyType
+        import com.axeda.drm.sdk.device.DeviceProperty
+        import com.axeda.drm.sdk.device.Property
+        /**
+         * This script will update the device properties on an asset from
+         * the integration demo
+         *
+         * IF:true
+         * Then: ExecuteCustomObject("axd_getAssetDetails")
+         */
+
+        Device sdkDevice = context.device;
+        Context sdkContext = context.context;
+        String modelName = sdkDevice.model.name
+        String serialNumber = sdkDevice.serialNumber
+
+        def client = new RESTClient("http://axedaintegrationdemo.elasticbeanstalk.com");
+
+        def resp = client.get(path: "/rest/assetdetail/${modelName}/${serialNumber}")
+
+        logger.debug(resp.data.color)
+
+
+        DevicePropertyFinder dpf = new DevicePropertyFinder(sdkContext)
+        dpf.type = PropertyType.DEVICE_TYPE
+        dpf.id = sdkDevice.id;
+
+        DeviceProperty dp = dpf.findOne()
+
+        List<Property> props = dp.getProperties()
+        props.each {Property prop ->
+            if (prop.name.equals("color")) {
+                logger.info "set color to ${resp.data.color}"
+                prop.value = resp.data.color
+            }
+        }
+
+        dp.store()
+    </pre>
+</div>
+
+
+<div id="nav">
+<h1>Menu</h1>
+<ul>
+ <li><a href="index.html">Home</a></li>
+ <li><a href="http://training.axeda.com">Training Server</a></li>
+ <li class="current"><strong>Scripts</strong></li>
+     <ul>
+         <li class="current"><strong>Asset Details via Webservice</strong></li>
+         <li class="current"><a href="scripts2.html">Publish DataItem to ActiveMQ</a></li>
+         <li class="current"><a href="scripts3.html">Send Alarm via Webservice</a></li>
+     </ul>
+ <li><a href="scripto.html">Scripto</a></li>
+    <li><a href="sim.html">Simulator</a></li>
+
+</ul>
+
+
+</ul>
+
+
+</div>
+
+
+
+
+<div id="sidebar">
+
+    </div>
+
+<div id="footer">
+    <p/>
+    <p/>
+
+    <p/>
+
+</div>
+</body>
+</html>

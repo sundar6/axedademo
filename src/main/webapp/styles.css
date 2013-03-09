@@ -1,0 +1,1033 @@
+
+html, body {
+ margin: 0;
+ padding: 0;
+}
+html {
+ overflow-y: scroll;
+ color: #000;
+ font-size: 100%;
+ word-wrap: break-word; /* Internet Explorer 5.5+, CSS3 */
+ background: #fff;
+ border: 0; /* Suggested UI styling */
+}
+body {
+ font: 0.75em/1.5 "Lucida Sans Unicode", "Lucida Grande", Tahoma, sans-serif;
+}
+#title, h1, h2, h3, h4, h5, h6 {
+ font-family: Georgia, Garamond, serif;
+}
+
+
+/* Main Sections */
+#header {
+ margin: 0;
+ padding: 0;
+ color: #000;
+ background: #bcc;
+ border-bottom: 1px solid #577;
+}
+#content {
+ float: right;
+ margin: 0 1% 0 0;
+ padding: 0;
+ width: 82%; /* 77% */
+ color: #000;
+ background: #fff;
+}
+#nav {
+ float: left;
+ margin-bottom: -1px; /* Share #footer border-top when content is short */
+ position: relative;
+ width: 15%; /* 20% */
+ overflow: hidden;
+ color: #000;
+}
+#footer {
+ clear: both;
+ width: 100%; /* hasLayout */
+ color: #000;
+ font-size: 0.834em;
+ background: #faf8f0;
+ border: 1px solid #000;
+ border-width: 1px 0;
+}
+#footer {
+ clear: both;
+ color: #000000;
+ font-size: 0.917em;
+ top: -2px;
+ width: 100%;
+ position: relative; /* Share border-bottom with #sidebar */
+ background: none repeat scroll 0 0 #FAF8F0;
+ border: 1px solid #000000;
+ border-width: 1px 0;
+}
+
+
+/* Blog Layout */
+.blog #content {
+ float: right;
+ margin: 0;
+ padding: 0;
+ left: -17%; /* -21% */
+ width: 66%; /* 2-column Gallery at 800x600 */ /* 62% */
+ position: relative;
+}
+.blog #sidebar {
+ float: right;
+ top: -1px;
+ margin: 0;
+ padding: 0;
+ left: 66%;
+ width: 14.5%;
+ position: relative;
+ background: none repeat scroll 0 0 #BBCCCC;
+ border-bottom: 1px solid #557777;
+ border-left: 1px solid #557777;
+}
+.blog.index #content h1 {
+ margin-bottom: 0.25em; /* 6px */
+}
+.blog.categories #content, .blog.entries #content {
+ margin: 0;
+ left: 0;
+ width: 83%; /* 77% */
+}
+/* - All Entries Archive */
+.entries #content div {
+ display: inline-block;
+ padding: 0.5em 0 0 0; /* 6px */
+ min-width: 8em;
+ max-width: 17em; /* 1024 = 4 columns; 1280 = 5 columns */
+ overflow: hidden;
+ vertical-align: top;
+ border-top: 2px solid #336666;
+}
+.entries #content div.first {
+ padding-left: 0;
+}
+.entries #content div.clear {
+ clear: left; /* IE6 & IE7 forget this for subsequent columns */
+}
+.entries #content ol {
+ padding: 0 0 0 2.5em;
+}
+
+/* Gutter */
+#content address, #content blockquote, #content .dialogue, #content form, #content pre {
+ margin: 0 25% 1em 0; /* 23% of <body> width, empty line below */
+}
+.blog #content address, .blog #content blockquote, .blog #content .dialogue, .blog #content form, .blog #content pre,
+#content blockquote pre {
+ margin-right: 0; /* Undo gutter */
+}
+#content dl, #content h2, #content h3, #content h4, #content h5, #content ol, #content p, #content ul {
+ padding-right: 25%; /* 23% of <body> width */
+}
+.blog #content dl, .blog #content h2, .blog #content h3, .blog #content h4, .blog #content h5, .blog #content ol, .blog #content p, .blog #content ul,
+#content blockquote dl, #content blockquote p {
+ padding-right: 0; /* Undo gutter */
+}
+.blog #content dl.compact {
+ padding-right: 0; /* Undo gutter */
+ width: 100%; /* avoid shrink-wrapping effect of float */
+}
+
+
+/* Base Styles */
+acronym, abbr {
+ font-variant: normal;
+ border: 0;
+}
+blockquote { /* Prevent indention */
+ margin: 0;
+ padding: 0;
+}
+img {
+ margin: 0;
+ padding: 0;
+ border: 0;
+}
+ins {
+ text-decoration: none;
+}
+sup {
+ vertical-align: top;
+ font-size: 0.75em;
+}
+h1 sup, h2 sup {
+ font-size: 0.667em;
+}
+
+/* - Tables */
+table {
+ margin: 0.25em 0 1em 0;
+ padding: 0;
+ empty-cells: show;
+ font: 1em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+caption {
+ margin: 0;
+ padding: 0;
+ width: 100%;
+ text-align: left;
+}
+td {
+ padding: 0.083em 0.25em 0.167em 0.25em;
+ color: #000;
+ vertical-align: baseline; /* Row Headers */
+ background: #faf8f0; /* before 2011 was: #eeeae0 */
+}
+tr:nth-child(even) td {
+ background: #eeeae0; /* zebra rows, June 2011 */
+}
+th { /* Header */
+ padding: 0.462em 0.231em;
+ color: #000;
+ font-size: 1.083em; /* 12px -> 13px */
+ text-align: center;
+ vertical-align: bottom; /* Rowspaned Headers */
+ background: #bcc;
+}
+tfoot td, tfoot th {
+ font-weight: bold;
+ vertical-align: middle;
+ background: #bcc;
+}
+thead td {
+ background: transparent; /* Support for empty-cells:hide; is rare? */
+}
+tbody th { /* Row Headers */
+ padding: 0.083em 0.25em 0.167em 0.25em;
+ font-size: 1em; /* 12px */
+ text-align: left;
+ vertical-align: baseline;
+ font-weight: normal;
+}
+th code, #content th code {
+ color: #000; /* <th> has green background */
+}
+table.number, table .number {
+ text-align: right;
+}
+table.letter, table .letter {
+ text-align: center;
+}
+table.prose, table .prose {
+ text-align: left;
+}
+/* -- Borders */
+table {
+ border-collapse: collapse;
+ border: 0;
+}
+th, tfoot td {
+ border: 1px solid #577;
+}
+td {
+ border: 1px solid #dcc;
+ border-color: #aeaaa0;
+}
+tfoot th, tfoot th {
+ border: 1px solid #577;
+}
+thead td {
+ border: 0;
+}
+
+
+/* - Hyperlinks */
+a, #content a code {
+ color: #821;
+ text-decoration: none;
+ border-bottom: 1px solid;
+}
+a:visited, #content a:visited code, #footer a:visited code {
+ color: #644;
+}
+a:hover, a:focus, a:active,
+#content a:hover code, #content a:focus code, #content a:active code {
+ color: #000;
+}
+a img {
+ padding: 2px;
+ background: #fff; /* Hide underline */
+ border: 2px solid #821; /* IE6 needs color */
+}
+a:hover img {
+ border-color: #644; /* IE6 */
+}
+a:hover img {
+ border-color: #000; /* IE6 */
+}
+/* - Readable Underlines */
+#content a, #footer a {
+ text-decoration: none;
+ border-bottom: 1px solid;
+}
+
+
+
+/* Header & Search Box */
+#header {
+ text-align: left;
+}
+#header fieldset {
+ margin: 0;
+ padding: 0.333em 0.25em 0 0;
+ border: 0 solid transparent;
+}
+#header legend {
+ margin: 0;
+ padding: 0;
+ color: #000;
+}
+#header legend label {
+ left: 0.167em; /* Visually aligned with #nav */
+ font: 2em Georgia, Garamond, serif;
+ line-height: 1.25;
+ letter-spacing: -0.06em;
+}
+#header input {
+ margin: 0 0 0.333em 0;
+ vertical-align: middle;
+}
+#header #q {
+ background: #fff url(http://www.google.com/cse/intl/en/images/google_custom_search_watermark.gif) left center no-repeat;
+ border: 1px solid #577;
+}
+#header #q:hover, #header #q:focus, #header #q[value] {
+ background: #fff;
+}
+
+
+
+/* Content */
+#content #breadcrumb {
+ margin: 0.25em 0;
+ padding: 0;
+}
+#content p {
+ margin: 0 0 1em 0;
+}
+#content p.meta {
+ color: #333;
+ font-size: 0.833em;
+}
+
+/* - Headings */
+#content h1, #content h2, #content h3, #content h4, #content h5, caption {
+ margin: 0;
+ padding: 0;
+ color: #366;
+ font-weight: normal;
+}
+#content h1 {
+ margin: 0.25em 0 0 0;
+ font-size: 2em; /* 12px -> 24px */
+ line-height: 1.25; /* 24px -> 30px */
+ letter-spacing: -0.04em; /* 24px -> 1px */
+}
+#content h2 {
+ margin-top: 0.5em;
+ font-size: 1.75em; /* 12px -> 21px */
+ line-height: 1.1904; /* 21px -> 25px */
+ letter-spacing: -0.048em; /* 21px -> 1px */
+ word-spacing: 0.048em; /* 21px -> 1px */
+}
+#content .gallery h2 { /* Used by: /gta/2/ */
+ margin-top: 0;
+}
+#content h3 {
+ color: inherit;
+ font-size: 1.5em; /* 12px -> 18px */
+ line-height: 1.222; /* 18px -> 24px */
+ letter-spacing: -0.056em; /* 18px -> 1px */
+ word-spacing: 0.056em; /* 18px -> 1px */
+}
+#content h4, #content h5 {
+ color: inherit;
+ font-size: 1.083em; /* 12px -> 13px */
+ line-height: 1.222; /* 18px -> 22px */
+}
+#content h5 {
+ font-style: italic;
+}
+#content .group { /* Related commands in: /gta/2/tutorials/scripting */
+ padding-top: 0.75em; /* h3 */
+ border-top: 2px solid #336666;
+}
+#content h1 code {
+ font-size: 0.917em; /* 24px -> 22px */
+ line-height: 1.136; /* 22px -> 25px */
+ letter-spacing: -0.045em; /* 22px -> 1px */
+}
+#content h2 code {
+ font-size: 0.857em; /* 21px -> 18px */
+ line-height: 1.222; /* 18px -> 22px */
+ letter-spacing: -0.056em; /* 18px -> 1px */
+ word-spacing: 0;
+}
+#content blockquote h2, #content blockquote h3, #content blockquote h4, #content blockquote h5, #content blockquote caption {
+ margin-top: 0;
+}
+caption {
+ font-size: 1.25em; /* 12px -> 15px */
+ letter-spacing: -0.033em; /* 15px -> 0.5px */
+}
+
+/* - Lists */
+#content dl, #content ul, #content ol {
+ margin: 0 0 1em 0;
+}
+#content dl dl, #content li dl, #content dl ul, #content dl ol, #content li ul, #content li ol {
+ margin: 0;
+ padding-right: 0; /* Undo gutter */
+}
+#content ol {
+ padding-left: 3.5em;
+ list-style: decimal;
+}
+#content ol ol {
+ padding-left: 2em;
+ list-style: lower-alpha;
+}
+#content ol ol ol {
+ list-style: lower-roman;
+}
+#content ol ol ol ol {
+ list-style: upper-roman;
+}
+#content ul {
+ padding-left: 2em;
+ list-style: disc;
+}
+#content ul ul {
+ list-style: circle;
+}
+#content ul ul ul {
+ list-style: square;
+}
+#content dt {
+ display: inline;
+ font-weight: bold;
+}
+#content dd {
+ margin: 0;
+ padding: 0;
+}
+/* -- <dl compact> */
+#content dl.compact, .compact #content dl {
+ float: left; /* contain inner floats */
+ width: 74%; /* +25% padding-right */
+}
+#content .compact dt, .compact #content dt,
+#content .compact dd, .compact #content dd {
+ clear: left;
+ float: left;
+ margin: 0;
+ padding: 0 0.5em 0 0;
+}
+#content .compact dd, .compact #content dd {
+ clear: none;
+}
+/* -- Image Gallery */
+#content ol.gallery, #content ul.gallery {
+ float: left;
+ margin: 0 0 1em 0;
+ padding: 0;
+ width: 100%;
+ list-style-type: none;
+}
+#content .gallery li {
+ float: left;
+}
+#content .gallery h3 {
+ margin: 0;
+}
+#content .gallery a img {
+ padding: 0;
+ border: 0;
+}
+/* -- Image Gallery for Index Pages */
+.index #content .gallery li {
+ width: 256px; /* Images width */
+ height: 240px; /* Image height + 25px h2 + 17px caption */
+ overflow: hidden; /* Just in case there are differently sized images or text */
+ border-right: 2px solid #fff;
+ border-bottom: 2px solid #fff;
+}
+.index #content .gallery li a {
+ display: block;
+ width: 256px; /* Fitt's Law */
+}
+.index #content .gallery a {
+ border: 0;
+}
+#content .gallery a img {
+ display: block; /* Text captions below image: /gta/2/ */
+}
+/* -- Category Clouds */
+.categories #content ul, .categories #content ol, #content ul.categories, #content ol.categories {
+ margin-left: 0;
+ padding: 0;
+ list-style: none;
+}
+.categories #content li, ul.categories li, ol.categories li {
+ display: inline;
+ padding-left: 0.33em; /* 4px */
+ border-left: 2px solid #366;
+}
+.categories #content li:first-child, ul.categories li:first-child, ol.categories li:first-child {
+ padding-left: 0;
+ border-left: 0;
+}
+/* -- Category Clouds after Group Headings */
+/* /gta/2/tutorials/scripting */
+#content h3.group {
+ padding-left: 20%; /* align text with main content */
+ left: -20%; /* fill #nav on left */
+ width: 100%; /* fill #content on right */
+ position: relative;
+ }
+#content h3.group + ol.categories {
+ float: left; /* pull subsequent content up */
+ left: -20%; /* relative to #content which is 82% of <body> */
+ margin-right: -20%; /* remove layout ghost */
+ width: 18%;
+ position: relative;
+}
+#content h3.group + ol.categories li {
+ display: block; /* one per line */
+ padding-left: 0;
+ border-left: 0;
+}
+/* - Images */
+#content img {
+ vertical-align: middle;
+}
+#content .img {
+ float: right;
+ margin: 0 0 1em 0;
+ padding: 0; /* <blockquote class="img"> in /ui/ie8/b1/download/ */
+ width: 100%;
+ vertical-align: top;
+}
+#content blockquote.img h3 {
+ margin-left: 0.667em; /* 12px */
+}
+#content blockquote.img ol, #content blockquote.img p, #content blockquote.img ul {
+ margin-left: 1em;
+}
+#content .img h2, #content .img h3 {
+ margin: 0;
+}
+#content .img img, #content .img div {
+ display: block;
+ float: right;
+ margin: 0 0 0 1em;
+}
+#content .img img {
+ padding: 0 4px; /* Align horizontally with 2px padding and 2px border of hyperlinked images */
+}
+#content .img a img {
+ padding: 2px; /* "a img" adds 2px border */
+ background: transparent; /* Show <blockquote> background in /ui/ie8/b1/download/ */
+}
+#content .img div a {
+ display: block;
+ margin: 0 0 0.5em 0;
+ border: 0;
+}
+#content .img div a img {
+ margin: 0;
+ background: #fff; /* <blockquote> in narrow viewports here: /me/ */
+}
+#content .img div img {
+ float: none;
+}
+
+/* - Text Samples */
+#content address, #content blockquote, #content .dialogue {
+ margin-top: 0.25em;
+ margin-bottom: 1em;
+ color: #000;
+ font-style: normal;
+ background: #faf8f0;
+ border: 1px solid #bebab0;
+}
+#content address {
+ padding: 1em;
+}
+#content li address {
+ margin-right: 0; /* Undo gutter */
+}
+#content blockquote {
+ padding: 1em 1em 0 1em;
+}
+#content blockquote blockquote, #content blockquote address {
+ margin-right: 0; /* Undo gutter */
+}
+#content blockquote p.citation, #content blockquote address { /* Migrate to <address> for this */
+ margin: 0 0 1em 0;
+ padding: 0;
+ text-align: right;
+ border: 0;
+}
+/* -- Dialogue */
+#content .alt {
+ color: #000;
+ background: #fff;
+}
+#content .dialogue {
+ padding: 0 1em;
+}
+#content .dialogue cite {
+ float: left;
+ display: block;
+}
+#content .dialogue blockquote {
+ margin: 0 0 0.2em 15%;
+ padding: 0;
+ border: 0;
+}
+#content .dialogue p {
+ margin: 0;
+ padding: 0;
+}
+/* -- IRC */
+/* See: /blog/2008/03/hixie-compliments
+        /blog/2007/05/xhtml-html */
+#content blockquote.irc {
+ padding: 0 1px; /* Firefox 2 clipped border-right of .me rows */
+}
+#content blockquote.irc table {
+ margin: 0;
+ padding: 0;
+ width: 100%; /* Make .me rows fill <blockquote> */
+}
+#content blockquote.irc td, #content blockquote.irc th {
+ margin: 0;
+ padding: 0 0.5em;
+ font-weight: normal;
+ background: transparent;
+ border: 0;
+}
+#content blockquote.irc th {
+ width: 5em; /* Shrink to width of name */
+ word-wrap: normal; /* IE6 override earlier break-word */
+}
+#content blockquote.irc td blockquote {
+ /* /blog/2008/08/headers */
+ margin: 0;
+ padding: 0;
+ border: 0;
+}
+#content blockquote.irc .me th, #content blockquote.irc .me td { /* IE6 won't style <tr> */
+ background: #eeeae0;
+}
+
+/* - Code Samples */
+#content kbd {
+ margin: 0 1px;
+ padding: 0 0.25em;
+ font: 1em Tahoma, Helvetica, sans-serif;
+ background: #f6f6f6;
+ border-width: 1px;
+ border-style: solid;
+ border-color: #bebab0 #666 #333 #bbb;
+}
+#content samp {
+ line-height: 1.5; /* 1px shift */
+}
+#content samp, #content samp code {
+ font-weight: bold;
+ font-family: "Microsoft Sans Serif", "MS Sans Serif", Geneva, sans-serif;
+}
+#content code, #content pre {
+ font-family: Consolas, "Lucida Console", Monaco, monospace;
+}
+#content code {
+ color: #366;
+}
+#content pre {
+ /* Long unbroken code: /blog/2007/12/
+    Styling overriden: /web/articles/code-in-pre */
+ margin-top: 0;
+ margin-bottom: 1em; /* Margin shorthand would undo gutter */
+ color: #000;
+ white-space: pre-wrap;
+ background: #faf8f0;
+}
+#content pre code, #content pre samp {
+ display: block;
+ margin: 0; /* Opera adds a margin */
+ padding: 0.5em 1em;
+ color: #000;
+ line-height: 1.25;
+ background: transparent;
+ border: 1px solid #bebab0;
+}
+
+/* -- Syntax Highlighting */
+/*
+ Make this generic and remove class on <pre>?
+ /web/articles/syntax-highlighting
+
+ * pre b = Element
+ * pre b b = Magic Element (includes, labels)
+ * pre i = Comment
+ * pre i i = Magic Comment (Doctype, PI)
+ * pre span = Value or Keyword
+ * pre span span = Magic Value or Keyword (NCR, constants)
+ * pre del = Error
+ * pre ins = Edited
+ * pre var = Varies
+ * pre a = reference via hyperlink
+*/
+/* CSS */
+pre code .css { /* Embedded CSS */
+ color: #000;
+}
+.css i { /* Comment */
+ color: #080;
+ font-style: normal;
+}
+.css span { /* Property Value */
+ color: #00f;
+}
+.css b, pre code span.css b { /* Selectors and At-Rules */
+ color: #808;
+ font-weight: normal;
+}
+.css ins, .css ins b { /* Marked change */
+ padding: 0.166em 0 0.083em 0;
+ text-decoration: none;
+ background: #eeeae0;
+}
+/* HTML */
+pre code i { /* Comment */
+ color: #080;
+ font-style: normal;
+ font-weight: normal;
+}
+pre code i i { /* Magic Comment */
+ color: #48c;
+ font-style: normal;
+}
+pre code b { /* Element */
+ color: #808;
+ font-weight: normal;
+}
+pre code b b { /* Magic Element */
+ color: #c48;
+}
+pre code span { /* Value */
+ color: #00f;
+}
+pre code span span { /* Magic Value */
+ color: #f40;
+ font-weight: normal;
+}
+pre code del { /* Error */
+ color: #f00;
+ font-style: normal;
+ text-decoration: none;
+}
+pre code ins, pre code ins b { /* Changed */
+ padding: 0.166em 0 0.083em 0;
+ text-decoration: none;
+ background: #eeeae0;
+}
+#content pre code a { /* Reference by Hyperlink */
+ color: inherit; /* just underline it */
+}
+/* Visual Basic 6 */
+/* class="vb6" makes the universal highlighting look like the VB6 IDE. */
+/* Retire this in favour of universal approach? */
+.vb6 i { /* Comment */
+ color: #080;
+ font-style: normal;
+}
+.vb6 b { /* Keyword */
+ color: #008;
+ font-weight: normal;
+}
+.vb6 span { /* not coloured in IDE */
+ color: inherit;
+}
+
+
+
+/* Blog Listings */
+.blog.index #content h2 {
+ clear: left;
+ text-align: right; /* Dates on right */
+ border-bottom: 1px solid #fff; /* Keep content below date */
+}
+.blog.index #content h2 a {
+ float: left;
+}
+/* Blog - All Entries */
+.entries #content h2 {
+ clear: none;
+ text-align: left;
+}
+.entries #content h2 a {
+ float: none;
+}
+
+
+/* Google Custom Search Results */
+/* Presented on: /search?q=keywords */
+/* - Remove ads and an empty <table> from results column */
+#cse .gsc-adBlock, .gsc-resultsHeader {
+ display: none;
+}
+/* - Yuck, layout tables! */
+#cse table, #cse td {
+ margin: 0;
+ padding: 0;
+ background: #fff;
+ border: 0;
+}
+/* - Results, Pagination */
+#cse .gsc-webResult .gsc-result, #cse .gsc-cursor-box {
+ padding: 1em 0 0 0;
+ border: 0;
+}
+/* Result URLs */
+#cse .gs-visibleUrl {
+ display: none;
+}
+#cse .gs-visibleUrl-long {
+ display: block;
+}
+/* Branding */
+#cse .gsc-results {
+ position: relative; /* layout context */
+}
+#cse .gcsc-branding {
+ right: 0;
+ bottom: 5px;
+ position: absolute;
+}
+
+
+/* Navigation */
+#nav h1 {
+ width: 0;
+ height: 0;
+ position: absolute;
+ overflow: hidden;
+}
+
+/* - Links list */
+#nav ul {
+ margin: 0;
+ padding: 0;
+ list-style: none;
+ color: #000;
+ background: #fff;
+ border-bottom: 1px solid #aeaaa0;
+}
+
+#nav li:first-child a, #nav li:first-child.current strong {
+ border-top: 0 !important; /* first time I ever used !important 2011-03-30 */
+}
+#nav a, #nav .current strong {
+ display: block;
+ padding: 0.25em 0 0.25em 0.5em;
+ text-decoration: none;
+ border-right: 1px solid #aeaaa0;
+ border-bottom: 0;
+}
+#nav .current strong {
+ color: #000;
+ font-weight: bold;
+ font-style: italic;
+ background: #fff;
+ border-top: 1px solid #aeaaa0;
+ border-right: 0; /* Connect to #content */
+}
+#nav a:link {
+ color: #000;
+ background: #faf8f0;
+ border-top: 1px solid #aeaaa0;
+}
+#nav a:visited {
+ color: #333;
+ background: #eeeae0;
+ border-top: 1px solid #9e9a90;
+ border-right: 1px solid #9e9a90;
+}
+#nav > ul > li > a:hover, #nav a:focus, #nav a:active {
+ color: #000;
+ background: #bcc;
+ border-top: 1px solid #577;
+ border-right: 1px solid #577;
+}
+/* - Sub Navigation */
+#nav ul ul {
+ margin-bottom: -1px;
+ top: -1px;
+ position: relative;
+ font-size: 0.917em; /* 12px -> 11px */
+ line-height: 1.636; /* 20px -> 18px */
+ border-bottom: 0;
+}
+#nav ul ul a, #nav ul ul .current strong {
+ padding: 0.182em 0 0.182em 0.545em; /* 2px 0 2px 6px */
+}
+#nav ul ul .current strong {
+ line-height: 1.455; /* 18px -> 16px */
+ padding-left: 1em; /* visual alignment due to italic */
+ border: 1px solid #aeaaa0;
+ border-width: 1px 0 1px 0;
+}
+#nav ul ul a:link, #nav ul ul a:visited,
+#nav ul ul a:hover, #nav ul ul a:focus {
+ padding-left: 1.25em;
+ border-width: 0 1px 0 0;
+}
+#nav ul ul a:hover, #nav ul ul a:focus, #nav ul ul a:active {
+ text-decoration: underline;
+}
+#nav ul ul li.current:last-child strong {
+ border-bottom: 1px solid #fff;
+}
+/* - Current Item Sub Navigation */
+#nav .current ul {
+ margin: -1px 0; /* share parent border-bottom; share subsequent item border-top */
+ position: relative;
+ border-top: 1px solid #aeaaa0;
+}
+
+/* - Irrepressible */
+#irrepressible {
+ margin-top: 2em;
+ font: 0.9167em "Arial", sans-serif; /* 12px -> 11px */
+ border: 1px solid #577;
+ border-left: 0;
+ overflow: hidden;
+}
+#irrepressible blockquote, #irrepressible h2,  #irrepressible p {
+ margin: 0;
+ padding: 0;
+ display: block;
+}
+#irrepressible a:link {
+ border: 0;
+}
+#nav #irrepressible h2 a, #irrepressible .bottom a {
+ line-height: 1.0;
+ text-align: center;
+ background: #6C3;
+}
+#irrepressible blockquote a, #irrepressible cite {
+ padding: 0.18em 0.28em;
+}
+#irrepressible blockquote a {
+ line-height: 1.181; /* 11px -> 13px */
+}
+#irrepressible cite {
+ display: block;
+ text-align: right;
+ line-height: 1.0;
+}
+/* - Links */
+#irrepressible a {
+ margin: 0;
+ padding: 0;
+ display: block;
+}
+#irrepressible a:link, #irrepressible a:visited {
+ border: 0;
+}
+#irrepressible a:hover, #irrepressible a:focus, #irrepressible a:active {
+ color: #fff;
+ background: #6C3;
+}
+#irrepressible a img {
+ vertical-align: top;
+ padding: 0;
+ border: 0;
+}
+
+
+/* Sidebar */
+
+/* - Blog */
+.blog #sidebar {
+ font-size: 0.917em; /* 12px -> 11px */
+ line-height: 1.455; /* 16px */
+}
+.blog #sidebar h2, .blog #sidebar h3 {
+ margin: 0.125em 0.625em 0 0.625em; /* 2px, 14px, 5px */
+ color: #000;
+ font-weight: normal;
+ font-size: 1.455em; /* 16px */
+ line-height: 1.25; /* 20px */
+}
+.blog #sidebar h2 dfn {
+ font-style: normal;
+}
+.blog #sidebar ol, .blog #sidebar p {
+ margin: 0 0.545em 1.273em 0.91em; /* 14px, 5px, 10px */
+}
+.blog #sidebar .categories li:first-child {
+ padding-left: 0;
+}
+.blog #sidebar ol {
+ padding: 0;
+ list-style: none;
+}
+.blog #sidebar li a {
+ display: block;
+ height: 1%; /* hasLayout */
+ text-decoration: underline;
+ border-bottom: 0;
+}
+.blog #sidebar li strong {
+ line-height: 1.2; /* 12px */
+}
+/* - Category Clouds */
+.blog #sidebar .categories li {
+ padding-left: 0.3em; /* 3px */
+}
+.blog #sidebar .categories li:first-child {
+ padding-left: 0;
+}
+.blog #sidebar .categories li a {
+ display: inline;
+}
+
+
+
+/* Footer */
+#footer p {
+ margin: 0;
+ padding: 0.3em 0.5em 0.3em 0.5em;
+}
+#footer ul {
+ float: left;
+ margin: 0;
+ padding: 0 0.5em 0.5em 0.5em;
+}
+#footer li {
+ margin: 0;
+ float: left;
+ padding: 0 0.5em;
+ list-style-type: none;
+ border-left: 1px solid #aeaaa0;
+}
+#footer :first-child {
+ padding-left: 0;
+ border-left: 0;
+}
+#footer #modified {
+ padding: 0 0.556em 0.667em 0;
+ text-align: right;
+ font-size: 0.9em;
+}

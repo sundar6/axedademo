@@ -1,0 +1,81 @@
+<html>
+<Title>Axeda Integration Test Harness</Title>
+<head>
+<link rel="stylesheet" type="text/css"  href="styles.css">
+</head>
+<body class="blog">
+<div id="header"><fieldset><legend><label>Axeda Integration Test Harness</label></legend></fieldset></div>
+<div id="content">
+    <h1>Publish DataItem to ActiveMQ</h1>
+
+    <pre class="markup">
+    import groovy.xml.MarkupBuilder
+    import com.axeda.drm.sdk.device.Device
+    import com.axeda.drm.sdk.integration.IntegrationPublisher
+
+    /**
+     * Send DataItem to Active MQ.
+     *
+     * Setup a rule as follows
+     *
+     * IF: Temperature.changed
+     * Then: ExecuteCustomObject("axd_sendDataItem","Temperature",Temperature.value)
+     */
+
+    def diName = parameters.name;
+    def diValue = parameters.value;
+    Device sdkDevice = context.device;
+
+
+    def writer = new StringWriter()
+    def xml = new MarkupBuilder(writer)
+
+    xml.DataItem(){
+        name(diName)
+        value(diValue)
+        serialnumber(sdkDevice.getSerialNumber())
+    }
+
+    IntegrationPublisher publisher = new IntegrationPublisher();
+    publisher.publishText(writer.toString(),[topic:'dataitem'])</pre>
+</div>
+
+
+<div id="nav">
+<h1>Menu</h1>
+<ul>
+ <li><a href="index.html">Home</a></li>
+ <li><a href="http://training.axeda.com">Training Server</a></li>
+ <li class="current"><strong>Scripts</strong></li>
+     <ul>
+         <li class="current"><a href="scripts.html">Asset Details via Webservice</a></li>
+         <li class="current"><strong>Publish DataItem to ActiveMQ</strong></li>
+         <li class="current"><a href="scripts3.html">Send Alarm via Webservice</a></li>
+     </ul>
+ <li><a href="scripto.html">Scripto</a></li>
+    <li><a href="sim.html">Simulator</a></li>
+
+</ul>
+
+
+</ul>
+
+
+</div>
+
+
+
+
+<div id="sidebar">
+
+    </div>
+
+<div id="footer">
+    <p/>
+    <p/>
+
+    <p/>
+
+</div>
+</body>
+</html>

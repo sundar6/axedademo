@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/jdbc
+        http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+
+
+    <context:component-scan base-package="com.axeda.ps.demo" />
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+               <property name="location">
+                   <value>classpath:integration.properties</value>
+               </property>
+           </bean>
+
+
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="mediaTypes">
+            <map>
+                <entry key="xml" value="application/xml"/>
+                <entry key="html" value="text/html"/>
+            </map>
+        </property>
+        <property name="viewResolvers">
+            <list>
+                <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+                <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+                    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+                    <property name="prefix" value="/WEB-INF/jsp/"/>
+                    <property name="suffix" value=".jsp"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+
+
+
+
+</beans>
+
+
+
+<!--
+
+    <bean id="jaxbMarshaller"
+          class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="classesToBeBound">
+            <list>
+                <value>com.ellin.jetogo.model.NowPlayingListItem</value>
+                <value>com.ellin.jetogo.model.NowPlayingListList</value>
+
+            </list>
+        </property>
+
+
+    </bean>
+
+
+
+-->
+
+
+    <!--<bean name="/ShowNowPlayingList" class="com.ellin.jetogo.web.ShowNowPlayingListController">
+        <property name="nowPlayingListManager" ref="nowPlayingListManager"/>
+    </bean>
+
+    <bean name="/RefreshNowPlayingList" class="com.ellin.jetogo.web.RefreshNowPlayingListController">
+        <property name="nowPlayingListManager" ref="nowPlayingListManager"/>
+    </bean>   -->
+
+
+    <!--
+    <bean name="/DownloadProgram" class="com.ellin.jetogo.web.DownloadProgramController">
+        <property name="jobMonitor" ref="jobMonitor"/>
+        <property name="nowPlayingListManager" ref="nowPlayingListManager"/>
+        <property name="viewName" value="sample/hello" />
+    </bean>-->
+<!--
+<bean id="nowPlayingListManager" class="com.ellin.jetogo.manager.NowPlayingListManager">
+	<property name="jobMonitor" ref="jobMonitor"/>
+</bean>
+
+<bean id="jobMonitor" class="com.ellin.jetogo.manager.JobMonitor"   scope="singleton">
+</bean>
+
+
+
+
+
+</bean>-->
+
+
+
+

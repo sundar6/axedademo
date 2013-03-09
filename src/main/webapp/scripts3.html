@@ -1,0 +1,93 @@
+<html>
+<Title>Axeda Integration Test Harness</Title>
+<head>
+<link rel="stylesheet" type="text/css"  href="styles.css">
+</head>
+<body class="blog">
+<div id="header"><fieldset><legend><label>Axeda Integration Test Harness</label></legend></fieldset></div>
+<div id="content">
+    <h1>Send Alarm via Webservice</h1>
+
+    <pre class="markup">
+        import com.axeda.drm.sdk.device.Device
+        import com.axeda.drm.sdk.Context
+        import groovy.xml.MarkupBuilder
+        import com.axeda.drm.sdk.data.Alarm
+        import groovyx.net.http.RESTClient
+
+        import static groovyx.net.http.ContentType.XML
+
+        /**
+         * Send an alarm to the Integration test harness via
+         * Rest.
+         *
+         * IF: true
+         * Then:ExecuteCustomObject("axd_sendAlarm")
+         */
+
+        Context sdkContext = context.context;
+        Alarm sdkAlarm = alarm;
+        Device sdkDevice = sdkAlarm.device;
+
+
+        def writer = new StringWriter()
+        def xml = new MarkupBuilder(writer)
+
+        xml.alarm(){
+            description(sdkAlarm.getDescription())
+            deviceid(sdkDevice.getId())
+            modelnumber(sdkDevice.getModel().getName())
+            serialnumber(sdkDevice.getSerialNumber())
+            name(sdkAlarm.getName())
+            severity(sdkAlarm.getSeverity())
+        }
+
+        logger.debug(writer)
+
+        def  client = new RESTClient("http://axedaintegrationdemo.elasticbeanstalk.com");
+
+        def data = client.post(contentType:XML, path:"/rest/alarm/new", body:writer);
+
+            </pre>
+</div>
+
+
+<div id="nav">
+<h1>Menu</h1>
+<ul>
+ <li><a href="index.html">Home</a></li>
+ <li><a href="http://training.axeda.com">Training Server</a></li>
+ <li class="current"><strong>Scripts</strong></li>
+     <ul>
+         <li class="current"><a href="scripts.html">Asset Details via Webservice</a></li>
+         <li class="current"><a href="scripts2.html">Publish DataItem to ActiveMQ</a></li>
+         <li class="current"><strong>Send Alarm via Webservice</strong></li>
+
+     </ul>
+ <li><a href="scripto.html">Scripto</a></li>
+    <li><a href="sim.html">Simulator</a></li>
+
+</ul>
+
+
+</ul>
+
+
+</div>
+
+
+
+
+<div id="sidebar">
+
+    </div>
+
+<div id="footer">
+    <p/>
+    <p/>
+
+    <p/>
+
+</div>
+</body>
+</html>

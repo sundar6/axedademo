@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/jdbc
+        http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+            <property name="location">
+                <value>classpath:integration.properties</value>
+            </property>
+        </bean>
+
+    <context:component-scan base-package="com.axeda.ps.demo" />
+    <!-- To enable @RequestMapping process on type level and method level -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+            <property name="UseDefaultSuffixPattern" value="false"/>
+    </bean>
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="marshallingConverter" />
+                <ref bean="jsonConverter" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="marshallingConverter" class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+        <constructor-arg ref="jaxbMarshaller" />
+        <property name="supportedMediaTypes" value="application/xml"/>
+    </bean>
+
+
+    <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+        <property name="supportedMediaTypes" value="application/json" />
+    </bean>
+
+
+
+    <bean id="jaxbMarshaller"
+          class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="classesToBeBound">
+            <list>
+                <value>com.axeda.ps.demo.model.AssetDetail</value>
+                <value>com.axeda.ps.demo.model.AssetDetailList</value>
+                <value>com.axeda.ps.demo.model.Alarm</value>
+                <value>com.axeda.ps.demo.model.AlarmList</value>
+                <value>com.axeda.ps.demo.model.DataItem</value>
+                <value>com.axeda.ps.demo.model.DataItemList</value>
+                <value>com.axeda.ps.demo.model.Asset</value>
+                <value>com.axeda.ps.demo.model.AssetList</value>
+                <value>com.axeda.ps.demo.model.Result</value>
+
+
+
+            </list>
+        </property>
+
+
+    </bean>
+
+
+
+
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="mediaTypes">
+            <map>
+                <entry key="xml" value="application/xml"/>
+                <entry key="html" value="text/html"/>
+            </map>
+        </property>
+        <property name="viewResolvers">
+            <list>
+                <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+                <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+                    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+                    <property name="prefix" value="/WEB-INF/jsp/"/>
+                    <property name="suffix" value=".jsp"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+
+
+
+
+</beans>
+
+
+
+<!--
+
+    <bean id="jaxbMarshaller"
+          class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="classesToBeBound">
+            <list>
+                <value>com.ellin.jetogo.model.NowPlayingListItem</value>
+                <value>com.ellin.jetogo.model.NowPlayingListList</value>
+
+            </list>
+        </property>
+
+
+    </bean>
+
+
+
+-->
+
+
+    <!--<bean name="/ShowNowPlayingList" class="com.ellin.jetogo.web.ShowNowPlayingListController">
+        <property name="nowPlayingListManager" ref="nowPlayingListManager"/>
+    </bean>
+
+    <bean name="/RefreshNowPlayingList" class="com.ellin.jetogo.web.RefreshNowPlayingListController">
+        <property name="nowPlayingListManager" ref="nowPlayingListManager"/>
+    </bean>   -->
+
+
+    <!--
+    <bean name="/DownloadProgram" class="com.ellin.jetogo.web.DownloadProgramController">
+        <property name="jobMonitor" ref="jobMonitor"/>
+        <property name="nowPlayingListManager" ref="nowPlayingListManager"/>
+        <property name="viewName" value="sample/hello" />
+    </bean>-->
+<!--
+<bean id="nowPlayingListManager" class="com.ellin.jetogo.manager.NowPlayingListManager">
+	<property name="jobMonitor" ref="jobMonitor"/>
+</bean>
+
+<bean id="jobMonitor" class="com.ellin.jetogo.manager.JobMonitor"   scope="singleton">
+</bean>
+
+
+
+
+
+</bean>-->
+
+
+
+
